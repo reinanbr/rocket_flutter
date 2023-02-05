@@ -1,15 +1,19 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+
+
 Future<List<LaunchRocket>> fetchLaunch() async {
   final http.Response response =
       await http.get(Uri.parse('https://api-rocketlc.vercel.app/ssl'));
   if (response.statusCode == 200) {
-    final responseJson = json.decode(response.body);
-    return (responseJson['data'] as List)
+    final responseJson = json.decode(utf8.decode(response.bodyBytes));
+    print('eu toh indo');
+    return (responseJson['body'] as List)
         .map((launch) => LaunchRocket.fromJson(launch))
         .toList();
   } else {
+    print('eu N toh indo');
     throw Exception('error url');
   }
 }
@@ -27,6 +31,7 @@ class LaunchRocket {
       required this.img_url});
 
   factory LaunchRocket.fromJson(Map<String, dynamic> json) {
+    print('todo cao voa');
     return new LaunchRocket(
       name: json['name'],
       mission: json['mission'],

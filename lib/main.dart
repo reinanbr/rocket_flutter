@@ -51,15 +51,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  late Future<List<LaunchRocket>> futureLaunch;
+  late Future<List<LaunchRocket>> data;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  @override
+  void initState() {
+    super.initState();
+    futureLaunch = fetchLaunch();
+    this.setState(() {
+      data = fetchLaunch();
     });
   }
 
@@ -72,23 +72,62 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
         body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: Container(
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-            height: 220,
-            width: double.maxFinite,
-            child: Card(
-              elevation: 5,
-            ),
-          ),
-        ));
+            // Center is a layout widget. It takes a single child and positions it
+            // in the middle of the parent.
+            child: FutureBuilder<List<LaunchRocket>>(
+          future: fetchLaunch(),
+          builder: (ctx, snapshot) {
+            if (snapshot.data != null) {
+              return ListView.builder(
+                  itemCount: snapshot.data == null ? 0 : snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    print('eu N sei');
+                    return Container(
+                        padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        height: 200,
+                        width: double.maxFinite,
+                        child: Card(
+                          elevation: 5,
+                          child: Container(
+                            child:Stack(
+                              children:<Widget>[
+                                Row(children: <Widget>[
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child:Text('${snapshot.data![index].name}', 
+                                  style: Theme.of(context).textTheme.headline5,
+                                  selectionColor: Colors.black,),
+                                ),
+                                ],),
+                                Row(children: <Widget>[
+                                  Align(
+                                  alignment: Alignment.bottomRight,
+                                  child:Text('${snapshot.data![index].date}                   ${snapshot.data![index].hour}', 
+                                  style: Theme.of(context).textTheme.headline6,
+                                  selectionColor: Colors.black,),
+                                ),
+                                ],)
+                              ])
+                          ),
+                        ));
+                  });
+            } else if (snapshot.hasError) {
+              print('N fui');
+              return Text(
+                'Ops! A conexão com o servidor falhou! \nError: ${snapshot.error}',
+                style: Theme.of(context).textTheme.headline6,
+              );
+            }
+
+            return const CircularProgressIndicator();
+          },
+        )));
   }
 }
