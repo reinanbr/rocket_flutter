@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
+import 'package:footer/footer_view.dart';
+
 import 'configs/palettsColor.dart';
 import 'apiRockets.dart';
 
@@ -88,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return ListView.builder(
                   itemCount: snapshot.data == null ? 0 : snapshot.data!.length,
                   itemBuilder: (context, index) {
-                    print('eu N sei');
+                    print('eu N sei: ${index}');
                     return Container(
                         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                         height: 200,
@@ -96,26 +99,45 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Card(
                           elevation: 5,
                           child: Container(
-                            child:Stack(
-                              children:<Widget>[
-                                Row(children: <Widget>[
+                              child: Stack(children: <Widget>[
+                            Row(children: <Widget>[
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Text(
+                                  '${snapshot.data![index].name} - ${snapshot.data![index].empire}',
+                                  style: Theme.of(context).textTheme.headline5,
+                                  selectionColor: Colors.black,
+                                  
+                                ),
+                              )
+                            ]),
+                            Row(
+                              children: <Widget>[
                                 Align(
                                   alignment: Alignment.centerRight,
-                                  child:Text('${snapshot.data![index].name}', 
-                                  style: Theme.of(context).textTheme.headline5,
-                                  selectionColor: Colors.black,),
+                                  child: Text(
+                                    '${snapshot.data![index].mission}',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                    selectionColor: Colors.black,
+                                  ),
                                 ),
-                                ],),
-                                Row(children: <Widget>[
-                                  Align(
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Align(
                                   alignment: Alignment.bottomRight,
-                                  child:Text('${snapshot.data![index].date}                   ${snapshot.data![index].hour}', 
-                                  style: Theme.of(context).textTheme.headline6,
-                                  selectionColor: Colors.black,),
+                                  child: Text(
+                                    '${snapshot.data![index].date}                   ${snapshot.data![index].hour}',
+                                    style:
+                                        Theme.of(context).textTheme.headline6,
+                                    selectionColor: Colors.black,
+                                  ),
                                 ),
-                                ],)
-                              ])
-                          ),
+                              ],
+                            )
+                          ])),
                         ));
                   });
             } else if (snapshot.hasError) {
@@ -128,6 +150,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
             return const CircularProgressIndicator();
           },
-        )));
+        ),
+      ),
+       bottomNavigationBar: BottomAppBar(
+         child:Text('Reinan')
+      ),
+      );
   }
 }

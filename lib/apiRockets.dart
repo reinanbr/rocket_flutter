@@ -37,7 +37,7 @@ class LaunchRocket {
       mission: json['mission'],
       empire: json['empire'],
       date: json['date'],
-      hour: json['hour'],
+      hour: json['hour'].replaceAll('2023',''),
       location: json['location'],
       img_url: json['img_url'],
     );
