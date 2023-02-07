@@ -75,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white54 ,//Colors.grey,
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
@@ -93,41 +94,49 @@ class _MyHomePageState extends State<MyHomePage> {
                   itemBuilder: (context, index) {
                     print('eu N sei: ${index}');
                     return Container(
+                      width: (MediaQuery.of(context).size.width),
                         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                         height: 200,
-                        width: double.maxFinite,
+                        // width: double.maxFinite,
                         child: Card(
+                          color:Colors.white,
                           elevation: 5,
                           child: Container(
                               child: Stack(children: <Widget>[
                             Row(children: <Widget>[
                               Align(
                                 alignment: Alignment.topRight,
-                                child: Text(
-                                  '${snapshot.data![index].name} - ${snapshot.data![index].empire}',
-                                  style: Theme.of(context).textTheme.headline5,
-                                  selectionColor: Colors.black,
-                                  
-                                ),
+                                child: Wrap(
+                                  spacing: 60,
+                                  runSpacing: 2,
+                                    children:<Widget>[Text(
+                                    '[${index+1}/${snapshot.data!.length}] ${snapshot.data![index].name} - ${snapshot.data![index].empire}',
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                    selectionColor: Colors.black,
+                                  ),
+                              ])
                               )
                             ]),
                             Row(
                               children: <Widget>[
                                 Align(
                                   alignment: Alignment.centerRight,
-                                  child: Text(
+                                  child:Wrap(
+                                    children:<Widget>[Text(
                                     '${snapshot.data![index].mission}',
                                     style:
                                         Theme.of(context).textTheme.bodyText2,
                                     selectionColor: Colors.black,
                                   ),
+                              ])
                                 ),
                               ],
                             ),
                             Row(
                               children: <Widget>[
                                 Align(
-                                  alignment: Alignment.bottomRight,
+                                  alignment: Alignment.bottomLeft,
                                   child: Text(
                                     '${snapshot.data![index].date}                   ${snapshot.data![index].hour}',
                                     style:
@@ -151,9 +160,6 @@ class _MyHomePageState extends State<MyHomePage> {
             return const CircularProgressIndicator();
           },
         ),
-      ),
-       bottomNavigationBar: BottomAppBar(
-         child:Text('Reinan')
       ),
       );
   }
