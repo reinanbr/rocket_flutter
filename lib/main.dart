@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children:<Widget>[Text(
                                     '[${index+1}/${snapshot.data!.length}] ${snapshot.data![index].name} - ${snapshot.data![index].empire}',
                                     style:
-                                        Theme.of(context).textTheme.headline5,
+                                        Theme.of(context).textTheme.headline6,
                                     selectionColor: Colors.black,
                                   ),
                               ])
@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   alignment: Alignment.centerRight,
                                   child:Wrap(
                                     children:<Widget>[Text(
-                                    '${snapshot.data![index].mission}',
+                                    'Mission: ${snapshot.data![index].mission}',
                                     style:
                                         Theme.of(context).textTheme.bodyText2,
                                     selectionColor: Colors.black,
@@ -146,11 +146,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             )
-                          ])),
-                        ));
-                  });
+                          ]
+                        )
+                      ),
+                    )
+                  );
+               });
             } else if (snapshot.hasError) {
-              print('N fui');
+            //  print('N fui');
               return Text(
                 'Ops! A conexão com o servidor falhou! \nError: ${snapshot.error}',
                 style: Theme.of(context).textTheme.headline6,
