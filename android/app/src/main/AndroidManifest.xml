@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rocket_app_flutter">
+    package="com.reysofts.rocket_app_flutter">
    <application
         android:label="rocket_app_flutter"
         android:name="${applicationName}"

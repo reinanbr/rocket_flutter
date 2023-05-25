@@ -1,5 +1,26 @@
+// Author: Reinan Br <slimchatuba@gmail.com>
+// Project: App Schedule Launch' Rocket's 
+// DateInit: 02/04/23
+// DateUpdate: 23/05/23
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+
+String brockLine(String text, int limit) {
+  var new_text_list = text.split(' ');
+  if (text.split(' ').length / limit > 1) {
+    var i = 0;
+    for (var word in text.split(' ').sublist(limit)) {
+      if (i % limit == 0) {
+        new_text_list.insert(i+limit, '\n');
+      }
+      i = i + 1;
+    }
+  }
+  var new_word = new_text_list.join(' ').replaceAll('\n ', '\n');
+  return new_word;
+}
 
 
 
@@ -33,9 +54,9 @@ class LaunchRocket {
   factory LaunchRocket.fromJson(Map<String, dynamic> json) {
     print('todo cao voa');
     return new LaunchRocket(
-      name: json['name'],
-      mission: json['mission'],
-      empire: json['empire'],
+      name: brockLine(json['name'],4),
+      mission: brockLine(json['mission'],6),
+      empire: brockLine(json['empire'],3),
       date: json['date'],
       hour: json['hour'].replaceAll('2023',''),
       location: json['location'],

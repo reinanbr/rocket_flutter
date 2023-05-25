@@ -75,17 +75,17 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white54 ,//Colors.grey,
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-        ),
-        body: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: FutureBuilder<List<LaunchRocket>>(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.blueGrey, //Colors.grey,
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: FutureBuilder<List<LaunchRocket>>(
           future: fetchLaunch(),
           builder: (ctx, snapshot) {
             if (snapshot.data != null) {
@@ -94,43 +94,44 @@ class _MyHomePageState extends State<MyHomePage> {
                   itemBuilder: (context, index) {
                     print('eu N sei: ${index}');
                     return Container(
-                      width: (MediaQuery.of(context).size.width),
+                        width: (MediaQuery.of(context).size.width),
                         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                         height: 200,
                         // width: double.maxFinite,
                         child: Card(
-                          color:Colors.white,
+                          color: Colors.white,
                           elevation: 5,
                           child: Container(
                               child: Stack(children: <Widget>[
                             Row(children: <Widget>[
                               Align(
-                                alignment: Alignment.topRight,
-                                child: Wrap(
-                                  spacing: 60,
-                                  runSpacing: 2,
-                                    children:<Widget>[Text(
-                                    '[${index+1}/${snapshot.data!.length}] ${snapshot.data![index].name} - ${snapshot.data![index].empire}',
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                    selectionColor: Colors.black,
-                                  ),
-                              ])
-                              )
+                                  alignment: Alignment.topRight,
+                                  child: Wrap(
+                                      spacing: 60,
+                                      runSpacing: 2,
+                                      children: <Widget>[
+                                        Text(
+                                          ' Rocket: ${snapshot.data![index].name} \n Empire: ${snapshot.data![index].empire}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6,
+                                          selectionColor: Colors.black,
+                                        ),
+                                      ]))
                             ]),
                             Row(
                               children: <Widget>[
                                 Align(
-                                  alignment: Alignment.centerRight,
-                                  child:Wrap(
-                                    children:<Widget>[Text(
-                                    'Mission: ${snapshot.data![index].mission}',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                    selectionColor: Colors.black,
-                                  ),
-                              ])
-                                ),
+                                    alignment: Alignment.centerRight,
+                                    child: Wrap(children: <Widget>[
+                                      Text(
+                                        ' Mission: ${snapshot.data![index].mission}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                        selectionColor: Colors.black,
+                                      ),
+                                    ])),
                               ],
                             ),
                             Row(
@@ -138,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Align(
                                   alignment: Alignment.bottomLeft,
                                   child: Text(
-                                    '${snapshot.data![index].date}                   ${snapshot.data![index].hour}',
+                                    ' ${snapshot.data![index].date}                   ${snapshot.data![index].hour}',
                                     style:
                                         Theme.of(context).textTheme.headline6,
                                     selectionColor: Colors.black,
@@ -146,16 +147,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ],
                             )
-                          ]
-                        )
-                      ),
-                    )
-                  );
-               });
+                          ])),
+                        ));
+                  });
             } else if (snapshot.hasError) {
-            //  print('N fui');
+              //  print('N fui');
               return Text(
-                'Ops! A conexão com o servidor falhou! \nError: ${snapshot.error}',
+                ' Ops! A conexão com o servidor falhou! \nError: ${snapshot.error}',
                 style: Theme.of(context).textTheme.headline6,
               );
             }
@@ -164,6 +162,6 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ),
-      );
+    );
   }
 }
