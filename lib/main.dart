@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:footer/footer.dart';
-import 'package:footer/footer_view.dart';
+
 
 import 'configs/palettsColor.dart';
 import 'apiRockets.dart';
@@ -53,7 +52,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+
   late Future<List<LaunchRocket>> futureLaunch;
   late Future<List<LaunchRocket>> data;
 

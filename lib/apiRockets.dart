@@ -11,7 +11,7 @@ String brockLine(String text, int limit) {
   var new_text_list = text.split(' ');
   if (text.split(' ').length / limit > 1) {
     var i = 0;
-    for (var word in text.split(' ').sublist(limit)) {
+    for (var _ in text.split(' ').sublist(limit)) {
       if (i % limit == 0) {
         new_text_list.insert(i+limit, '\n');
       }
@@ -21,6 +21,7 @@ String brockLine(String text, int limit) {
   var new_word = new_text_list.join(' ').replaceAll('\n ', '\n');
   return new_word;
 }
+
 
 
 
@@ -38,6 +39,9 @@ Future<List<LaunchRocket>> fetchLaunch() async {
     throw Exception('error url');
   }
 }
+
+
+
 
 class LaunchRocket {
   final String name, mission, empire, date, hour, location, img_url;
