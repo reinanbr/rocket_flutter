@@ -1,16 +1,88 @@
 # rocket_app_flutter
 
-A new Flutter project.
+**01/02**
 
-## Getting Started
+15:45
+- Olá Reinan ou qualquer outro Dev, espero que este manual o encontre bem. <br>
+Estamos aqui para orientar você no desenvolvimento de Apps em Flutter.<br>
+Desda configuração de seu ambiente (pesado e denso ambiente) até o seu upload<br> 
+na Loja ou build para Web.<br>
+É comum pensar que seja algo fácil, mas não é.
+O desenvolvimento Flutter para App foi o primeiro FrameWork a nos garantir o nosso primeiro upload de um App para uma loja (o schedule Rocket para a Play Store) e por conta disso, ele é nossa opção de desenvolvimento atual.<br>
+Como ele foi o primeiro, nada melhor do que ser ele a receber esse manual em seu readme.<br>
+Sem mais enrolação, vamos começar!<br>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 1 - Criando e Configurando o ambiente
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 1.1 - Instalando o JDK-11
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-11-jdk
+```
+
+Depois disso, você deve ter um caminho anotado de sua versão jdk atual. Por exemplo:<br>
+```sh
+/usr/lib/jvm/java-11-openjdk-amd64
+```
+Copie ele, pois será usado em breve.
+
+
+### 1.2 - Instalando e Configurando o AndroidStudio
+
+Link de [Download]('https://developer.android.com/studio/?gclsrc=aw.ds&hl=pt-br' "download AS")
+
+Depois de baixado, coloque o seguinte codigo em seu ```.zshrc``` ou ```.bashrc```:
+<br>
+
+```sh
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export ANDROID_HOME=~/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:~/android-studio/bin
+export PATH=$PATH:~/flutter/bin
+```
+
+Note, que o caminho JDK foi colado ali no JAVA_HOME. Se for outro, então coloque outro. <br>
+E sim, a gente adiantou um pouco o trabalho com o Flutter.<br>
+
+Instale o AndroidStudio no caminho ~/, como já está configurado no código acima.<br>
+
+inicie ele com ```studio.sh``` <br>
+
+faça os comandos básicos e vá para a tela inicial do app.<br>
+Deve aparecer isso:
+<img src="https://react-native.rocketseat.dev/images/android/android-studio-menu.png">
+
+Vá em mais ações.<br>
+
+Instale os sdk mais atuais e o sdk cmd, como aparece na imagem abaixo:
+<img src="https://cdn1.gnarususercontent.com.br/1/1116100/a97bac96-220b-4b5d-a078-f872aaed2715.png">
+
+Feche o AntroidStudio.<br>
+
+### 1.3 - Instalando e Configurando o Flutter:
+
+Para baixar o Flutter para Linux, clique [aqui]('https://docs.flutter.dev/get-started/install/linux' 'flutter download')<br>
+
+depois disso, descompacte ele no caminho ~/, como já tinha sido configurado no código de ambiente.<br>
+em seguida, dê o comando ```flutter precache```. Espere.<br>
+em seguida, instale os seguintes apt:
+
+```
+sudo apt-get install clang cmake git ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+```
+
+Depois disso, rode o comando ```flutter doctor``` e veja o que aparece.<br>
+O unico erro que deve aparecer é o de licença do Android Studio. Então para aceitar , <br> rode ```flutter doctor --android-licenses``` e aceite todas.<br>
+
+Depois disso, rode o ```flutter-doctor``` de novo. Todos deverão está com o V de ok, sem nenhuma issue.
+
+<br>
+
+## 2 - Iniciando o Projeto pelo VS Code.
