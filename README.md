@@ -86,3 +86,46 @@ Depois disso, rode o ```flutter-doctor``` de novo. Todos deverão está com o V 
 <br>
 
 ## 2 - Iniciando o Projeto pelo VS Code.
+
+Para iniciar o repositório de um novo App Flutter é muito fácil:<br><br>
+    
+    1. Digite Ctrl+Shift+P
+    2. Digite Flutter
+    3. Escolha Application
+    4. Escreva o nome do projeto
+
+Pronto. Repositório criado com todos os Arquivos. <br>
+
+## 3 - Atualizando e Instalando Pacotes
+
+Para instalar algum modulo, vá em ```pubspec.yaml```, na parte de <br>
+```Dependencies``` e coloque o nome do modulo que quer adicionar. Exemplo: <br>
+
+```yaml
+dependencies:
+
+  flutter_native_splash: ^2.2.16
+  flutter:
+    sdk: flutter
+  footer: ^0.0.4
+```
+
+Em seguida, rode ```flutter pub get``` no terminal.<br>
+
+Para atualizar, ```flutter pub upgrade```.
+
+
+<br>
+
+## 4 Para Rodar a Aplicação.
+
+Simples! <br>
+
+```sh
+flutter run
+```
+E escolha o Device que irá rodar ela.
+
+<br>
+
+## 5 - Build da Aplicação.
