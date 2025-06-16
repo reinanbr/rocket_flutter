@@ -11,7 +11,11 @@ na Loja ou build para Web.<br>
 O desenvolvimento Flutter para App foi o primeiro FrameWork a nos garantir o nosso primeiro upload de um App para uma loja (o schedule Rocket para a Play Store) e por conta disso, ele é nossa opção de desenvolvimento atual.<br>
 Como ele foi o primeiro, nada melhor do que ser ele a receber esse manual em seu readme.<br>
 Sem mais enrolação, vamos começar!<br>
-
+Instale o flutter pelo snap:
+<br>
+```sh
+sudo snap install flutter --classic
+```
 
 ## 1 - Criando e Configurando o ambiente
 
@@ -45,7 +49,6 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:~/android-studio/bin
-export PATH=$PATH:~/flutter/bin
 ```
 
 Note, que o caminho JDK foi colado ali no JAVA_HOME. Se for outro, então coloque outro. <br>
@@ -129,3 +132,12 @@ E escolha o Device que irá rodar ela.
 <br>
 
 ## 5 - Build da Aplicação.
+<hr>
+<br>
+
+#### 16/06/25
+agora tem como instalar ambos pelo snap
+```sh
+sudo snap install flutter --classic 
+sudo snap install android-studio --classic
+```
